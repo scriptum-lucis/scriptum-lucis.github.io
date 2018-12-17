@@ -1,20 +1,18 @@
 # Site settings
-title: Twitter trolls strategy to disrupt democracy
-description: 'Applied Data Analysis EPFL'
-url: 'https://scriptum-lucis.github.io'
-#baseurl: '/jekyll-uno'
-baseurl: '/' # change to this to run on github
-
+title: Scriptum Lucis
+description: 'Personal Blog'
+url: 'http://scriptum-lucis.github.io'
+baseurl: '/'
 # google_analytics: 'UA-XXXXXX-X'
 # disqus_shortname: 'your-disqus-name'
 
 author:
-  name: 'Josh Gerdes'
-  email: ahmed.sadllh@gmail.com.com
-  twitter_username: joshgerdes
-  facebook_username: joshgerdes
-  github_username:  asaadal
-  linkedin_username:  joshgerdes
+  name: 'Ahmed S'
+  email: stillunderconstruction
+  twitter_username: stillunderconstruction
+  facebook_username: stillunderconstruction
+  github_username:  stillunderconstruction
+  linkedin_username:  stillunderconstruction
 
 defaults:
   -
