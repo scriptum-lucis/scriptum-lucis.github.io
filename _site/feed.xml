@@ -1,23 +1,463 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>A script for the light</title>
-    <description>Ahmed</description>
+    <title>Twitter trolls strategy to disrupt democracy</title>
+    <description>Applied Data Analysis EPFL</description>
     <link>http://localhost:4444/jekyll-uno/</link>
     <atom:link href="http://localhost:4444/jekyll-uno/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 17 Dec 2018 21:37:59 +0100</pubDate>
-    <lastBuildDate>Mon, 17 Dec 2018 21:37:59 +0100</lastBuildDate>
-    <generator>Jekyll v3.6.2</generator>
+    <pubDate>Sun, 16 Dec 2018 23:54:24 +0100</pubDate>
+    <lastBuildDate>Sun, 16 Dec 2018 23:54:24 +0100</lastBuildDate>
+    <generator>Jekyll v3.7.4</generator>
     
       <item>
-        <title>Welcome</title>
-        <description>&lt;p&gt;&lt;strong&gt;Coming soon !&lt;/strong&gt;&lt;/p&gt;
+        <title>Data Story</title>
+        <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Social media went from exciting to being ingrained in our societies and its influence exceeded the personal sphere to attain even our legal framework and political institutions. The question of regulating social networks is currently a hot topic especially with the rise of the concept of cyber warfare and what that entails in terms of disruption and propaganda. It is therefore very important to study how social media can be used to create narratives and tip the scales into one way or the other. In particular, the Internet Research Agency, a Russian troll factory was accused of interfering in multiple foreign political processes like the the 2016 US presidential elections. We dispose of a dataset of roughly 3 millions tweets spanned between 2012 and 2018 related to accounts of this agency. The aim is to understand what these tweets focus on and how do they adapt with respect to major political and politically divisive events.&lt;/p&gt;
+
+&lt;h2 id=&quot;datasets&quot;&gt;Datasets&lt;/h2&gt;
+&lt;p&gt;We dispose of a total of 3 datasets: 2 related to the Russian Internet Research Agency IRA and one to the Iranian goverment.
+The first Russian dataset was released by FiveThirtyEight in July/August 2018 and contains a total of roughly 3 million tweets. The tweets in this database were sent between February 2012 and May 2018, with the vast majority posted from 2015 through 2017. This dataset was labeled by category and has the following structure:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Header&lt;/th&gt;
+      &lt;th&gt;Definition&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;external_author_id&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;An author account ID from Twitter&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;author&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;The handle sending the tweet&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;content&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;The text of the tweet&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;region&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;A region classification, as &lt;a href=&quot;https://help.salesforce.com/articleView?id=000199367&amp;amp;type=1&quot;&gt;determined by Social Studio&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;language&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;The language of the tweet&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;publish_date&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;The date and time the tweet was sent&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;harvested_date&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;The date and time the tweet was collected by Social Studio&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;following&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;The number of accounts the handle was following at the time of the tweet&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;followers&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;The number of followers the handle had at the time of the tweet&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;updates&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;The number of “update actions” on the account that authored the tweet, including tweets, retweets and likes&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;post_type&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Indicates if the tweet was a retweet or a quote-tweet&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;account_type&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Specific account theme, as coded by Linvill and Warren&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;retweet&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;A binary indicator of whether or not the tweet is a retweet&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;account_category&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;General account theme, as coded by Linvill and Warren&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The two other datasets were released by twitter in October 2018. We have got an extra 9 millions Russian troll data and 1 million affiliated to Iran. These datasets are not labeled in terms of account category but contain more information than the previous one. Unfortunately the location of the twitter users for almost all the dataset is unknown and it’s not possible to visualize the location of these trolls. We have an extra dataset of 1.8 million tweets consisting of general public tweets that we extracted from a large twitter internet archive. We filtered 150 Gb of tweets dating August 2017 based on a small list of generic politically related words. This dataset serves as a baseline to compare with the Russian and Iran data especially for the topics. The choice of keywords for the filtering is very important: if we choose words that are correlated to certain topics or events then we will bias the topics’ comparison. But also, if we put a big list that would ultimately cover all possible political/politically related topics then we will increase noise in the data and it will be hard to get a good separation of topics.&lt;/p&gt;
+
+&lt;h2 id=&quot;methodology&quot;&gt;Methodology&lt;/h2&gt;
+&lt;p&gt;Our analysis focuses on 2 dimensions:
+First, we take the first Russian dataset and see the tweets activity versus politically related events in the US. We will take advantage of the account category labeling to see how right wing trolls and left wing trolls compare.
+Then, we explore topics that the Russians targeted and compare them to the Iranian ones to have a better understanding of each strategy.
+We also talk about how to classify the unlabeled Russian and Iranian datasets to different categories.&lt;/p&gt;
+
+&lt;h2 id=&quot;general-analysis&quot;&gt;General Analysis&lt;/h2&gt;
+
+&lt;p&gt;Looking at the first Russian troll twitter data, we find 2772 user accounts all linked to the IRA. Among all the authors only 119 are responsible for roughly half of the tweets and there a few users with a large number of tweets. &lt;br /&gt;
+What is interesting to see here is that 3 authors from the top 6 authors are dedicated to talking about news and the top author of the data is categorized as a Commercial account. This shows that the operation is sophisticated in the sense that trolls try to play both sides right and left but also put the hat of the news media, commercial outlets and other more casual categories to blend into the public and engage them into reacting and following a carefully selected set of events.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/images/authors_count.png&quot; align=&quot;middle&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Now let’s look at the account categories:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Account category                                                           &lt;/th&gt;
+      &lt;th&gt;N° Tweets                                                         &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Commercial&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;113256&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Fearmonger&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;10855&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;HashtagGamer&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;216048&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;LeftTroll&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;413711&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NewsFeed&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;597656&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NonEnglish&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;27632&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RightTroll&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;706120&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;unknown&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;7261&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Authors                               &lt;/th&gt;
+      &lt;th&gt;N° Tweets                              &lt;/th&gt;
+      &lt;th&gt;Accouny_category                             &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;EXQUOTE&lt;/td&gt;
+      &lt;td&gt;59652&lt;/td&gt;
+      &lt;td&gt;Commercial&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SCREAMYMONKEY&lt;/td&gt;
+      &lt;td&gt;44041&lt;/td&gt;
+      &lt;td&gt;NewsFeed&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;WORLDNEWSPOLI&lt;/td&gt;
+      &lt;td&gt;36974&lt;/td&gt;
+      &lt;td&gt;RightTroll&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AMELIEBALDWIN&lt;/td&gt;
+      &lt;td&gt;35371&lt;/td&gt;
+      &lt;td&gt;RightTroll&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TODAYPITTSBURGH&lt;/td&gt;
+      &lt;td&gt;33602&lt;/td&gt;
+      &lt;td&gt;NewsFeed&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SPECIALAFFAIR&lt;/td&gt;
+      &lt;td&gt;32588&lt;/td&gt;
+      &lt;td&gt;NewsFeed&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/images/languages.png&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the above histogram, we can see that the dataset contains a total of 56 languages but is mainly composed of Russian (20.72%) and English (71.83%) tweets
+We will therefore restrict further analysis to only the tweets in English. It’s otherwise hard to perform topic extraction without understanding the language and having the tools to do. However, tt’s interesting to see that the IRA uses a large number of languages in its disruptive process.&lt;/p&gt;
+
+&lt;h2 id=&quot;tweet-activity&quot;&gt;Tweet Activity&lt;/h2&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/images/monthly.png&quot; align=&quot;middle&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/daily.png&quot; alt=&quot;Daily&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can see in the monthly and daily aggregated plots, that in some periods of time the tweet activity increases in a significant way. This indicates that there is a predefined strategy behind the trolls.
+&lt;img src=&quot;/images/hourly.png&quot; alt=&quot;Hourly&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We count the tweets monthly and aggregate at the last of the month where we have tweets. Here we can see the 10 busiest months for the trolls before, during and after the compaign.&lt;/p&gt;
+&lt;div style=&quot;clear: right;&quot;&gt;
+    &lt;p style=&quot;float: right;&quot;&gt;&lt;img src=&quot;/images/2.png&quot; border=&quot;1px&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;        Before the compaign: The tweets activity during the month where Donald Trump announced his candidcay (June 2015) was by far the most intense in the precompaign period. This can be an indicator that the Russians were enthousiatics about his compaign from the early days. Before the middle of 2015, there was little activity. We can't be conclusive here because we do not have all logs of all the IRA activity but it seems that the US 2016 elections was the first important target in the US for the IRA&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;clear: right;&quot;&gt;
+    &lt;p style=&quot;float: right;&quot;&gt;&lt;img src=&quot;/images/1.png&quot; border=&quot;1px&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;During the compaign: We can see a surge in the tweets in September and October 2016 corresponding to the months preceding the presidential elections. When we looked closely to the data, we've seen that particularly on October 6th and 7th, the frequency is very high. This can be probably explained by the second presdidential debate on the October 9th. In the same sense, there is an increase (although less important) on October 19th for the 3rd presidential debate.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;clear: right;&quot;&gt;
+    &lt;p style=&quot;float: right;&quot;&gt;&lt;img src=&quot;/images/0.png&quot; border=&quot;1px&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt; August 2017 is the trolls favorite. We can see that the spike in tweets from August 12 to August 18 2016. This can be explained by the fact that at the 12th a white supremacist rally occured and was followed by a peacefull protests in CharlottesVille Viriginia. A car crashed into the protestors killing one and injuring 28. This incident was intensely covered by the US media and stayed in the spotlight for a while especially after the famous comment tweeted by Trump: “You had some very bad people in that group. But you also had people that were very fine people, on both sides.” We will focus more on this month in the following section&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Charlottesville_car_attack&quot;&gt;Charlottesville car attack&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/different.png&quot; alt=&quot;Different&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After the compaign at any hour of the day the number of tweets is higher than the maximum hourly number of tweets during the compaign. The same applies to during the compaign and before it. This is actually very insightfull. It means the IRA was much less interested in interfering with the political process before Donald Trump announced his candidacy. Then when he did, they strongly increased the tweeting frequency until he won. After the elections, the IRA was even more interested in compromising the public opinion. Of course, this is only an approximation since we don’t have the logs of all the IRA’s activity but this is a good indicator that they beef up their effort everytime they achieve something.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/leftright.png&quot; alt=&quot;Leftright&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Overall, the number of tweets by right trolls is larger than the left trolls. The difference grows to almost the double after the elections. The idea here is that left trolls will divide the left and liberal agenda and to some extent give ways for the conservative and right agenda to prevail. It’s also an effective way to polarize the American society, increase stigma and make people focus on what divides them. After the compaign, this is not anymore the objective. the goal becomes how to better defend the president-elect and discredit his critics.&lt;/p&gt;
+
+&lt;h2 id=&quot;topic-extraction&quot;&gt;Topic Extraction&lt;/h2&gt;
+
+&lt;p&gt;To extract the topics that the trolls are targetting, we used Latent Dirichlet Allocation (LDA) and iterated multiple times with different number of topics. Since this is an unsupervised learning algorithm, it is harder to automatically evaluate the topics we get. as a first measure, we used the coherence score to choose an optimal number of topics. Each topic is generated by a list of words and the coherence score give a pairwise word-similarity score. The resulted score is the aggregate of all scores of the correspondings list of words.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/coherence.png&quot; alt=&quot;Coherence [1]&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;t : Topics coming in from the topic model&lt;br /&gt;
+S : Segmented topics&lt;br /&gt;
+P : Calculated probabilities&lt;br /&gt;
+Phi vector : A vector of the “confirmed measures” coming out from the confirmation module&lt;br /&gt;
+c : The final coherence value&lt;/p&gt;
+
+&lt;p&gt;We used pyLDAvis [2] to visualize the topics for different periods and datasets.
+pyLDAvis is a interactive LDA visualization python package. What my results look like? I took one screenshot of pyLDAvis result as shown in Figure 1. The area of circle represents the importance of each topic over the entire corpus, the distance between the center of circles indicate the similarity between topics. For each topic, the histogram on the right side listed the top 30 most relevant terms.&lt;/p&gt;
+
+&lt;p&gt;Given a dataset of tweets we would like to extract, for each tweet, each related topic. More so our idea is to associate such topics to specific windows of time and events which happened on that period. We are expecially interested in the evaluation of the period before, during and after the US presidential campain of 2016, where Trump took office as the 45th President on January 20, 2017. In order to simplify the topic extraction we will focus on the three months, one before the campain, one during the campain and the last one after the campain, where the number of tweets are the highest with respect to all the other months. These months were extracted during the Exploratory Analysis for the Russia dataset.&lt;/p&gt;
+
+&lt;p&gt;We will proceed by topic extraction of the following dataset:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;russian troll tweets&lt;/li&gt;
+  &lt;li&gt;iranian troll tweets&lt;/li&gt;
+  &lt;li&gt;general public&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For the first dataset, which is the russian one, we will distinguished among right, left trolls and right with left trolls analyzed all together. This procedure is possible since each russian troll tweet is labeled with respect to the latter information. Such an analysis will give us an overall evaluation of the topics trend for different categories of trolls. In particular the questions we are interested to answer in this stage are the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Are the topics for the left and the right tweets meaningful?&lt;/li&gt;
+  &lt;li&gt;Are the topics for the left and the right tweets similar or do they are different?&lt;/li&gt;
+  &lt;li&gt;Do we extract more information by analyzing the left and right tweets all together?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After this analysis we will consider the iranian dataset. For the latter, the analysis of the entire dataframe, not distinguish between left and right trolls, is done. Indeed the iranian tweets are not labeled with respect to the trolls categories. The main questions we would like to address in this part of the work are the following:&lt;/p&gt;
+
+&lt;p&gt;Are there differences among iranian tweets in the three different periods (e.g. before, during and after the campain)?
+Are the iranian tweets consistent in the different periods with respect to the russian ones?
+Finally we looked at a specific event, which is the Charlottesville car attack on August 12, 2017. For this event the entire month of August 2017 has been analyzed for russian and iranian troll’s tweets. More so we also extracted a tweets dataset related to general public for August 2017. Here we are interested in answering the following questions:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Can we find in each dataset the expected topic, which is the Charlottesville car attack?&lt;/li&gt;
+  &lt;li&gt;Are the other topic for each dataset, e.g. russian, irianian and general public tweets, consistent?&lt;br /&gt;
+The analysis is structured as follows:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Definition of functions for for the topic analysis&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Russian trolls tweets analysis&lt;/li&gt;
+  &lt;li&gt;Iranian trolls tweets analusis&lt;/li&gt;
+  &lt;li&gt;General public analysis&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is important to underline that, although a consistent procedure has been adopted there is some heuristics in the topic label assignment for each sequence of keywords which is related to the personal evaluation of the human operator. More so the topic extraction in this context is more challenging since the dataset is related to the same big topic, which is mainly politics, and the overlap among some subtopics is always present.&lt;/p&gt;
+
+&lt;p&gt;&lt;select id=&quot;list&quot;&gt;
+  &lt;option value=&quot;0&quot;&gt;Before compaign Russian right trolls&lt;/option&gt;
+  &lt;option value=&quot;1&quot;&gt;Before compaign Russian left trolls&lt;/option&gt;
+  &lt;option value=&quot;2&quot;&gt;Before compaign Russian all trolls&lt;/option&gt;
+  &lt;option value=&quot;3&quot;&gt;After compaign Russian right trolls&lt;/option&gt;
+  &lt;option value=&quot;4&quot;&gt;After compaign Russian left trolls&lt;/option&gt;
+  &lt;option value=&quot;5&quot;&gt;After compaign Russian all trolls&lt;/option&gt;
+  &lt;option value=&quot;6&quot;&gt;During compaign Russian right trolls&lt;/option&gt;
+  &lt;option value=&quot;7&quot;&gt;During compaign Russian left trolls&lt;/option&gt;
+  &lt;option value=&quot;8&quot;&gt;During compaign Russian all trolls&lt;/option&gt;
+  &lt;option value=&quot;9&quot;&gt;Before compaign Iranian trolls&lt;/option&gt;
+  &lt;option value=&quot;10&quot;&gt;During compaign Iranian trolls&lt;/option&gt;
+  &lt;option value=&quot;11&quot;&gt;After compaign Iranian trolls&lt;/option&gt;
+  &lt;option value=&quot;12&quot;&gt;General public August 2017&lt;/option&gt;
+&lt;/select&gt;&lt;/p&gt;
+
+&lt;iframe src=&quot;/lda_before_campain_right_russia.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;0&quot; style=&quot;display: : block;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;/lda_before_campain_left_russia.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;1&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;/lda_before_campain_all_russia.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;2&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+
+&lt;iframe src=&quot;/lda_after_campain_right_russia.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;3&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;/lda_after_campain_left_russia.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;4&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;/lda_after_campain_all_russia.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;5&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+
+&lt;iframe src=&quot;/lda_during_campain_right_russia.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;6&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;/lda_during_campain_left_russia.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;7&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;/lda_during_campain_all_russia.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;8&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+
+&lt;iframe src=&quot;/lda_iran_before.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;9&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;/lda_iran_during.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;10&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;/lda_iran_after.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;11&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+
+&lt;iframe src=&quot;/lda_general_public.html&quot; height=&quot;900px&quot; width=&quot;1220px&quot; id=&quot;12&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+ /* var hidden = false;
+  function listQ(){
+    var e = document.getElementById(&quot;list&quot;);
+    if(e.selectedIndex &gt; 0){
+      if(&quot;1&quot; === e.options[e.selectedIndex].value){ alert(&quot;yo&quot;);
+
+      	        hidden = !hidden;
+        if(hidden) {
+            document.getElementById('0').style.visibility = 'hidden';
+        } else {
+            document.getElementById('0').style.visibility = 'visible';
+        }
+
+       }
+    }
+  }
+  document.getElementById(&quot;list&quot;).addEventListener(&quot;change&quot;,listQ);*/
+
+  var idDisplayed = '0';
+  function listQ(){
+    var e = document.getElementById(&quot;list&quot;);
+    	document.getElementById(e.options[e.selectedIndex].value).style.display = 'block';
+    	document.getElementById(idDisplayed).style.display = 'none';
+    //	alert(idDisplayed)
+   		idDisplayed = e.options[e.selectedIndex].value
+   	//	alert(idDisplayed)
+  }
+  document.getElementById(&quot;list&quot;).addEventListener(&quot;change&quot;,listQ);
+&lt;/script&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/keywords.png&quot; alt=&quot;Matching&quot; /&gt;&lt;br /&gt;
+Based on the keywords of each topic, we can manually extract the topic based on prior knowledge about the subject or by simply by googling.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.themedialine.org/featured/slutwalk-through-the-holy-city/&quot;&gt;Media on terrorism &lt;/a&gt;,
+&lt;a href=&quot;https://www.independent.co.uk/news/world/americas/malala-in-america-young-activist-visits-congress-in-capitol-hill-to-urge-more-education-funding-for-10342722.html&quot;&gt;Malala in America&lt;/a&gt;,
+&lt;a href=&quot;http://en.farsnews.com/newstext.aspx?nn=13940327001517&quot;&gt;Yemen Missile Attacks&lt;/a&gt;,
+&lt;a href=&quot;https://edition.cnn.com/2015/06/26/world/kuwait-mosque-attack/index.html&quot;&gt;Bomb Kuwait&lt;/a&gt;,
+&lt;a href=&quot;https://www.timesofisrael.com/kerry-too-early-to-tell-if-iran-nuclear-deal-will-be-sealed/&quot;&gt;Nuclear deal with Iran&lt;/a&gt;,
+&lt;a href=&quot;http://en.farsnews.com/newstext.aspx?nn=13940325000360&quot;&gt;Ramadam&lt;/a&gt;&lt;/p&gt;
+
+&lt;iframe src=&quot;/before_campaign_comparison_russia.html&quot; height=&quot;1800px&quot; width=&quot;900px&quot; style=&quot;display:block&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;For what we refer to as “before campaign” period, right and left tweets topic analysis shows a nice picture of the principle events of June 2015. They are therefore very meaningful by themselves. If one look at right and left trolls separately, some interesting evaluation can be done.&lt;br /&gt;
+ First of all the number of topics covered by the right trolls is longer than the one of the left. More so, in terms of political themes, the right trolls are more active, in particular Obama is highly cited from the left and the right trolls. Several political topics are covered. For example the coalition between Barack Obama and Hillary Clinton both right trolls, in topic 34, and the left trolls, in topic 27. (as described in the following article &lt;a href=&quot;https://www.bostonglobe.com/metro/2015/06/26/unity-obama-clinton-bond-was-born/ytbkcLJhmdMZxoS0F1GCLP/story.html&quot;&gt;Democrats together&lt;/a&gt;. Also the Asia trade deal, topic 1 for right trolls &lt;a href=&quot;http://time.com/3908381/barack-obama-china-trans-pacific-partnership/&quot;&gt;Asia trade deal&lt;/a&gt; e.g. in the tweet “ObamaRyanTrade Defenses This write trade rules China” or for the same-sex marriage &lt;a href=&quot;https://www.latimes.com/nation/la-na-gay-marriage-ruling-supreme-court-live-htmlstory.html&quot;&gt;LGBTQ rights&lt;/a&gt; in topic (3) of right trolls. Obama appears for the left troll in topic 3 e.g. in the tweet “York Times release President Obama College Transcripts fooled they blew Rubio traffic tickets”. Also Michelle Obama is cited by right trolls in topic 6, as in the tweet “TopVideo there make happen Michelle Obama graduates” &lt;a href=&quot;http://time.com/3915678/michelle-obama-commencement-chicago/&quot;&gt;Michelle Obama commencement speech&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Very interestingly Trump is cited only by the right trolls in topic 25 (e.g. in the tweet “Trump Obama MANY Decisions Anybody That Incompetent Intentional Degradation tcot).&lt;/p&gt;
+
+&lt;p&gt;Topics related to the news of that period are also covered, for example tha case of Charleston shooter Dylann Roof cited by right trolls &lt;a href=&quot;https://www.dailymail.co.uk/news/article-3132670/Dylann-Roof-manifesto-Killer-unveils-Charleston-target-church-massacre-calls-black-people-stupid-violent-complains-s-no-real-KKK-help-him.html&quot;&gt;Charleston shooting&lt;/a&gt; or the Detroit pastor charged with killing transgender woman again cited by the right trolls &lt;a href=&quot;https://www.metrotimes.com/news-hits/archives/2018/12/13/detroit-pastor-charged-with-killing-transgender-woman?utm_source=widget&amp;amp;utm_medium=articleblog&amp;amp;utm_campaign=rightrail&amp;amp;utm_content=MorebyThisAuthor&quot;&gt;Pastor indicted for murder&lt;/a&gt; in topic 21. From the left trolls side, we can see the citation of the event related to the family member charged with pregnant teen’s beating, forced abortion in topic 0 &lt;a href=&quot;https://www.nydailynews.com/news/national/dallas-family-member-charged-teen-forced-abortion-article-1.2245353&quot;&gt;Teen abortion&lt;/a&gt; and the McKinney video in topic 16 &lt;a href=&quot;https://www.bbc.com/news/world-us-canada-33059484&quot;&gt;McKinney&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Several other topics can be also found, for example both right and left trolls commented on apple: the right trolls considered Apple investiments (“Spotify gets investment faces competition from Apple business,United States,English”) while left trolls commented on Apple events (“Apple biggest event year later already heard lots about what happening”). Finally also a comment about Florida city bans &lt;a href=&quot;https://www.businessinsider.com/r-to-control-spring-break-florida-city-bans-beach-drinking-2015-6?r=US&amp;amp;IR=T&quot;&gt;Florida officials ban drinking on the beach&lt;/a&gt; by the right trolls.&lt;/p&gt;
+
+&lt;p&gt;Finally we could evaluate that considering all the trolls together did not add any new information as expected.&lt;/p&gt;
+
+&lt;iframe src=&quot;/during_campaign_comparison_russia.html&quot; height=&quot;2300px&quot; width=&quot;900px&quot; style=&quot;display:block&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;In the period during the campaign, the topics related to Trump are more frequent with respect to the previous analysis. Right and Left trolls commented on different events related to Trump, for example if one look at the right trolls it is possible to find themes related to the the Trump and Pence relationship (topic 0 &lt;a href=&quot;https://www.vanityfair.com/news/2016/10/donald-trump-mike-pence-relationship&quot;&gt;Trump and Pence&lt;/a&gt;, the presidential election (topic 7), the final Trump-Clinton debate (topic 26) &lt;a href=&quot;https://www.washingtonpost.com/news/the-fix/wp/2016/10/19/the-final-trump-clinton-debate-transcript-annotated/?utm_term=.c324deb47353&quot;&gt;Final presidential debate&lt;/a&gt;, Donald Trump travel to Gettysburg &lt;a href=&quot;https://www.politico.com/story/2016/10/donald-trump-gettysburg-230188&quot;&gt;Trump in Gettyburg&lt;/a&gt; and many others. On the other hand left trolls have only two topics related to Trump, one that we found also in right trolls topic, which is the final Trump-Clinton debate (topic 6). It is therefore clear the highest attention of the right trolls on the figure of Trump.&lt;br /&gt;
+The rest of left trolls topics are really sparse: some are related to movies (e.g. topic 13), others to magazine and gossip (e.g. in topic 35) etc. 
+Obama is still a commented topic but less frequent with respect to the period before the campaign.&lt;/p&gt;
+
+&lt;p&gt;Hillary Clinton is also reported, as in topic 3 of right trolls where the possibility that WikiLeaks was working with Russian state actors seeking to elect Donald Trump is commented.&lt;/p&gt;
+
+&lt;p&gt;Also in this case the topics for each troll categories are clear and there are some overalap, for example in the case of Trump. However clear differences can be found between the right and left trolls, for example in the frequency of the evaluation of some topics and in the fact that again the right trolls tweets seem more related to the politic field.&lt;/p&gt;
+
+&lt;p&gt;Again, considering all trolls together did not add a lot to the analysis.&lt;/p&gt;
+
+&lt;iframe src=&quot;/after_campaign_comparison_russia.html&quot; height=&quot;1800px&quot; width=&quot;900px&quot; style=&quot;display:block&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;The period after the campaign is rich of topics both for the right and the left trolls. The 54% of the topics of the right trolls tweets concern Donald Trump in different context, for example in the case of his support to the white nationalist movement (topic 6) &lt;a href=&quot;https://www.nytimes.com/2017/08/15/us/politics/trump-charlottesville-white-nationalists.html&quot;&gt;Charlottesville white nationalists&lt;/a&gt; or the fact that he forgave the notorious Sheriff Joe Arpaio (topic 16) &lt;a href=&quot;https://www.forbes.com/sites/charlestiefer/2017/08/25/the-president-trump-who-pardons-arpaio-may-use-pardons-to-block-mueller/#f12036175d42&quot;&gt;Trump pardon Sheriff Arpaio&lt;/a&gt;. While only one topic of the left trolls relates to Trump, in particular related to the binomial Obama-Trump (e.g. in the tweets “Congressional  eager investigate Obama administration notably cooler idea that Trump” and “first month Trump family trips security will cost more than  roughly that years Obama”).
+Other topics in the left trolls tweets are really varied.&lt;/p&gt;
+
+&lt;p&gt;Very interesting is the Charlottesville topic commented by right trolls in topic 3 and 8 and by left trolls in topic 27. Indeed in Charlottesville, Virginia, white nationalists descended to protest the removal of a statue of a Confederate general on Saturday, but the protest soon spiraled out of control into a violent, chaotic and deadly scene as the day went on (http://sunshinestatenews.com/story/florida-voices-react-violent-charlottesville-protest).&lt;br /&gt;
+Let’s dig deeper into August 2017 and in particular the Charlottesville attack.&lt;/p&gt;
+
+&lt;iframe src=&quot;/charlottesville.html&quot; height=&quot;2000px&quot; width=&quot;900px&quot; style=&quot;display:block&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;In all the three cases (russian, iranian trolls and general public) one can find something related to Charlottesville. The association with Trump can be also found in most of the cases for each category (russian, iranian trolls and general public). While looking at some tweets associated to Charlottesville it is possible to find few differences mostly related to the russian trolls with respect to the iranian ones and the general public. Russian trolls related to Charlottesville seems to be more politically oriented from a first qualitative analysis (e.g. some tweets are Charlottesville Terrorist ANTI TRUMP - President Trump Reacts Charlottesville Tragedy - Hillary Reacts Charlottesville Blaming White Supremacists - Marine Veteran Reveals TRUTH about Charlottesville Tragedy). In the other cases the tweets seems to be less aggressive both in the case of iranian trolls (e.g. some tweets are trust Facebook more than news Trump supporters explain they think Charlottesville setup - Trump says racism evil condemns Nazis white supremacists following Charlottesville protester death - Sessions concedes Charlottesville domestic terrorism DomesticTerrorism JeffSessions Social year since Charlottesville Time bring back cartoon drew last year Rather than condemn racist - White supremacists hold torch rally Charlottesville) and in the case of general pubblic (e.g. Republicans conservatives defending Trump Charlottesville morally bankrupt - Phoenix Mayor Greg Stanton Calls Trump Delay Rally Wake Charlottesville - heartbroken over Charlottesville will step down from Trump Manufacturing Council - Rosa Parks Daughter Praises Trump Response Charlottesville).&lt;br /&gt;
+We can then conclude that in that period among other topics the one related to Charlottesville are present and are threated in a slightly different way among the three categories analyzed.&lt;/p&gt;
+
+&lt;p&gt;Let’s look now at some of the difference between the Russian and Iranian trolls:&lt;/p&gt;
+
+&lt;p&gt;After analysing russian and iranian troll’s tweets during the three periods before, during and after the campaign it is possible to notice that first of all the topics are more centered on iranian-related problems as well as the muslim aspects. The US component is more marginal expecially in the period “before” the campaign. In this last period it is possible also to notice a fewer activity of the iranain trolls with respect to the russian ones in terms of different topic analyzed. Iranian troll’s activity start increasing for the other two periods, during and after the campaign where Trump-related topics are well covered.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/iran_simple.png&quot; alt=&quot;iran&quot; /&gt;&lt;br /&gt;
+The wordcloud above highlights the most ocurring words in the Iranian trolls dataset. We can see that the the subjects are mostly regional such as the Israeli-Iranian tension, Saudi Arabia and the conflict in Yemen, Syria and isis, Turkey and Russia for their direct influence over the situation in Syria and of course the United States through Trump and Obama. The Iranians’ troll focus is narrow and focalizes on matters that are closely related to Iran’s interests.
+&lt;img src=&quot;/images/rus_simple.png&quot; alt=&quot;russia&quot; /&gt;&lt;br /&gt;
+On the other hand, the Russians trolls dataset shows a wider spectrum of subjects such as US politics (Trump, Obama, Clinton), sports, news, buisness.&lt;/p&gt;
+
+&lt;p&gt;Comparing both wordclouds shows that the Russian operation is much more sohisticated than the Iranian operation in the sense that trolls tried to blend in the public and seem more casual by tweeting about apolitical topics whereas the Iranian trolls seem more robotic and more straightforward.&lt;/p&gt;
+
+&lt;p&gt;We used word2vec on the most ocurring words in both datasets:&lt;/p&gt;
+
+&lt;p&gt;In the IRA data, we find it interesting that there are many tweets talking about the world invoking words like Xinjiang, Tibet and Myanmar and Sudan all zones of conflicts with the respectives goverments.&lt;/p&gt;
+
+&lt;iframe src=&quot;/images/russiaword2vec.jpeg&quot; height=&quot;450px&quot; width=&quot;1000px&quot; id=&quot;2&quot; align=&quot;center&quot; style=&quot;display:block;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Concerning the Iran troll data, we see the same regional interests as before with a focus on Israel, Yemen, Saudi Arabia. Both tables show Trump as a common ocurring word but the correlated words are different: in the IRA tweets, Trump doesn’t hold any connotation whereas in Iran’s we see “impeachtrump”, “notmypresident” and “lynch”. This is very telling in the sense that the Russian and Iranian perspectives are different: one is trying to boost Trump and aid him, the other tries to disparage him. If we look at the geopolotical situation, we know that Russia meddled in the US elections to help Trump win against Clinton. On the other hand, Trump revoked the Nuclear agreement with Iran and reinstated further economic sanction on the Irani goverment. What is ironic is that even though the operations are contradictory in goal, Russia and Iran are close allies in the Syrian conflict.&lt;/p&gt;
+
+&lt;iframe src=&quot;/images/iranword2vec.png&quot; height=&quot;450px&quot; width=&quot;1000px&quot; id=&quot;2&quot; align=&quot;center&quot; style=&quot;display:block;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;labeling-account-categories&quot;&gt;Labeling account categories&lt;/h2&gt;
+&lt;p&gt;As we have said, only the first Russian data is labeled to different categories. It’s interesting to see the distribution of the left and right trolls for unlabeled data. The idea is to build a classifier using the Russian trolls labeled account categories and then classify the second Russian dataset into right troll, left troll and other classes. Althought when testing the model over unseen labeled data, we get a pretty good accuracy (89%), it’s hard to estimate the model’s performance on unlabeled data. Usually the hashtags give a good idea about the political affiliation of the tweet sender. We therefore mapped hashtags to the three classes neglecting noisy hahshtags that are ironic or covered by the context. We then used this noisy labeling to evaluate the performance of the model. We only get 60.3% of accurate classification.&lt;/p&gt;
+
+&lt;p&gt;We also wanted to run the classifier on the Iran trolls dataset but we noticed that the overlap between the hashtags is small and the noisy labeling we did doesn’t work in this situation. We can see the below the most popular hashtags in both the second Russian trolls dataset and the Iranian trolls dataset.
+&lt;img src=&quot;/images/russian_hashtags.png&quot; alt=&quot;russia&quot; /&gt;
+&lt;img src=&quot;/images/iran_hashtags.png&quot; alt=&quot;iran&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Thank you for reading our data story !&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;[1] &lt;a href=&quot;http://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf&quot;&gt;Coherence score&lt;/a&gt;&lt;br /&gt;
+[2] &lt;a href=&quot;https://pyldavis.readthedocs.io/en/latest/readme.html&quot;&gt;pyLDAvis&lt;/a&gt;&lt;br /&gt;
+[3] &lt;a href=&quot;https://github.com/joshgerdes/jekyll-uno&quot;&gt;Theme&lt;/a&gt;&lt;br /&gt;
+[4] &lt;a href=&quot;https://github.com/asaadal/ADA-project&quot;&gt;Code repository&lt;/a&gt;&lt;/p&gt;
+
 </description>
-        <pubDate>Mon, 17 Dec 2018 00:00:00 +0100</pubDate>
-        <link>http://localhost:4444/jekyll-uno/2018/welcome-to-myblog/</link>
-        <guid isPermaLink="true">http://localhost:4444/jekyll-uno/2018/welcome-to-myblog/</guid>
+        <pubDate>Wed, 10 Jan 2018 00:00:00 +0100</pubDate>
+        <link>http://localhost:4444/jekyll-uno/2018/intro/</link>
+        <guid isPermaLink="true">http://localhost:4444/jekyll-uno/2018/intro/</guid>
         
-        <category>Under construction</category>
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+      <item>
+        <title>About us</title>
+        <description>&lt;p&gt;The project was done to fullfill the Applied Data Analysis course requirements.
+We’re three students:&lt;br /&gt;
+Ahmed Saadallah, Master student, EPFL&lt;br /&gt;
+Jessica Lanini, PhD student, EPFL&lt;br /&gt;
+Neeraj Yadav, Undergraduate student, IIT Kanpur&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/jekyll-uno/images/troll.png&quot; alt=&quot;Drag Racing&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 09 Jan 2018 00:00:00 +0100</pubDate>
+        <link>http://localhost:4444/jekyll-uno/2018/dataset/</link>
+        <guid isPermaLink="true">http://localhost:4444/jekyll-uno/2018/dataset/</guid>
         
         
         <category>jekyll</category>

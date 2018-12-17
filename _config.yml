@@ -1,19 +1,20 @@
 # Site settings
-title: A script for the light
-description: 'Ahmed'
-url: 'https://scriptum-lucis.github.io'
+title: Twitter trolls strategy to disrupt democracy
+description: 'Applied Data Analysis EPFL'
+url: 'https://ada-asjl.github.io'
 #baseurl: '/jekyll-uno'
-baseurl: '/'
+baseurl: '/' # change to this to run on github
+
 # google_analytics: 'UA-XXXXXX-X'
 # disqus_shortname: 'your-disqus-name'
 
 author:
-  name: 'Ahmed'
-  email: ahmed.sadllh@gmail.com
-  twitter_username: don'tgohereyetplease
-  facebook_username: vdon'tgohereyetplease
+  name: 'Josh Gerdes'
+  email: ahmed.sadllh@gmail.com.com
+  twitter_username: joshgerdes
+  facebook_username: joshgerdes
   github_username:  asaadal
-  linkedin_username:  don'tgohereyetplease
+  linkedin_username:  joshgerdes
 
 defaults:
   -
