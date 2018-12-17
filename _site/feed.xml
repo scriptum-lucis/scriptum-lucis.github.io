@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>A script for the light</title>
+    <description>Ahmed</description>
+    <link>http://localhost:4444/jekyll-uno/</link>
+    <atom:link href="http://localhost:4444/jekyll-uno/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 17 Dec 2018 21:37:59 +0100</pubDate>
+    <lastBuildDate>Mon, 17 Dec 2018 21:37:59 +0100</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
+    
+      <item>
+        <title>Welcome</title>
+        <description>&lt;p&gt;&lt;strong&gt;Coming soon !&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 17 Dec 2018 00:00:00 +0100</pubDate>
+        <link>http://localhost:4444/jekyll-uno/2018/welcome-to-myblog/</link>
+        <guid isPermaLink="true">http://localhost:4444/jekyll-uno/2018/welcome-to-myblog/</guid>
+        
+        <category>Under construction</category>
+        
+        
+        <category>jekyll</category>
+        
+      </item>
+    
+  </channel>
+</rss>
